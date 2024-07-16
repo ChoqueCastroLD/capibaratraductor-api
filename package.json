@@ -1,0 +1,23 @@
+{
+  "name": "capibaratraductor-api",
+  "module": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "bun --watch src/index.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "prisma": "^5.16.2"
+  },
+  "peerDependencies": {
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@elysiajs/cors": "^1.0.5",
+    "@elysiajs/jwt": "^1.0.2",
+    "@prisma/client": "^5.16.2",
+    "elysia": "^1.0.27",
+    "openai": "^4.52.7",
+    "picocolors": "^1.0.1"
+  }
+}
