@@ -24,10 +24,5 @@ export const translatePrompt = (options: {
 Respond with this format so a parser can understand you.
 If there is no text in the image respond with [].
 Reading direction: ${promptHorizontalReadingDirection} and ${promptVerticalReadingDirection}.
-Your response must be a valid json array so the parser does not fail.
-this is the response schema:
-[{ "o": string, "t": string }]
-if the image contains multiple texts, respond with an array of objects.
-[{ "o": string, "t": string }, { "o": string, "t": string }]
-o means original text and t means translated text.`;
+The result must be ordered by the position of the text in the image and reading direction.`;
 };

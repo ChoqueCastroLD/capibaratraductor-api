@@ -52,6 +52,8 @@ export const promptGPT = async (prompt: string, imageData: string, contextId?: s
         ],
     });
 
+    console.log(JSON.stringify(response, null, 2));
+
     const results = response.choices.flatMap(v => v.message.tool_calls?.map(call => call.function) ?? []).map(v => {
         const list = JSON.parse(v.arguments);
         return list.result;
