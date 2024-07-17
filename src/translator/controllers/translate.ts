@@ -14,6 +14,7 @@ export const translate = async (body: TranslateRequest): Promise<TranslateRespon
         toLanguage,
         horizontalReadingDirection: body.horizontalReadingDirection,
         verticalReadingDirection: body.verticalReadingDirection,
+        separateDialogs: body.separateDialogs,
     });
 
     console.log({ prompt });

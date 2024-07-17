@@ -7,6 +7,7 @@ export const TranslateRequest = t.Object({
     horizontalReadingDirection: t.String(),
     verticalReadingDirection: t.String(),
     keepContext: t.Boolean(),
+    separateDialogs: t.Boolean(),
 });
 
 export type TranslateRequest = Static<typeof TranslateRequest>;

@@ -30,6 +30,25 @@ export const promptGPT = async (prompt: string, imageData: string, contextId?: s
                     },
                 },
             },
+            {
+                type: "function",
+                function: {
+                    name: "returnSingleTranslation",
+                    parameters: {
+                        type: "object",
+                        properties: {
+                            result: {
+                                type: "object",
+                                properties: {
+                                originalText: { type: "string" },
+                                    translatedText: { type: "string" },
+                                },
+                                required: ["originalText", "translatedText"],
+                            },
+                        },
+                    },
+                },
+            },
         ],
         model: "gpt-4o",
         messages: [
