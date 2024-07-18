@@ -50,7 +50,7 @@ export const promptGPT = async (prompt: string, imageData: string, contextId?: s
                 },
             },
         ],
-        model: "gpt-4o",
+        model: "gpt-4o-mini",
         messages: [
             {
                 role: "user",
