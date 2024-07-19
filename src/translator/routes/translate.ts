@@ -6,9 +6,30 @@ import { translate } from '../controllers/translate';
 
 export const router = () => new Elysia()
     // .use(loggedMemberOnly())
+    .get(
+        '/api/health',
+        async ({ headers }) => {
+            console.log(JSON.stringify(headers));
+            return {
+                status: true,
+                data: {
+                    ok: true
+                }
+            };
+        },
+        {
+            response: t.Object({
+                status: t.Boolean(),
+                data: t.Object({
+                    ok: t.Boolean(),
+                }),
+            }),
+        }
+    )
     .post(
         '/api/translate',
-        async ({ body }) => {
+        async ({ body, headers }) => {
+            console.log(JSON.stringify(headers));
             const translations = await translate(body);
 
             return {
