@@ -15,7 +15,7 @@ export const loggedOptional = () => new Elysia()
         const token = headers.get('Authorization')?.split('Bearer ')[1];
         const organizationDomain = headers.get('organization-domain');
         if (!organizationDomain) {
-            throw new Error('No autorizado, dominio de organización no encontrado.');
+            throw new Error('Unauthorized, organization domain not found.');
         }
         if (!token) {
             return { logged: false };
@@ -45,23 +45,23 @@ export const loggedUserOnly = () => new Elysia()
     .derive({ as: 'global' }, async ({ jwt, request: { headers } }) => {
         const organizationDomain = headers.get('organization-domain');
         if (!organizationDomain) {
-            throw new Error('No autorizado, dominio de organización no encontrado.');
+            throw new Error('Unauthorized, organization domain not found.');
         }
         const token = headers.get('Authorization')?.split('Bearer ')[1];
         if (!token) {
-            throw new Error('No autorizado, token no encontrado.');
+            throw new Error('Unauthorized, token not found.');
         }
         const tokenPayload = await jwt.verify(token);
         if (!tokenPayload) {
-            throw new Error('No autorizado, token incorrecto.');
+            throw new Error('Unauthorized, incorrect token.');
         }
         const organization = await checkOrganization(organizationDomain);
         if (!organization) {
-            throw new Error('No autorizado, organización no encontrada.');
+            throw new Error('Not authorized, organization not found.');
         }
         const user = await checkToken(organization.id, token);
         if (!user) {
-            throw new Error('No autorizado, usuario no encontrado.');
+            throw new Error('Unauthorized, user not found.');
         }
         return { logged: true, token, organizationId: organization.id, user };
     });
@@ -76,23 +76,23 @@ export const loggedMemberOnly = () => new Elysia()
     .derive({ as: 'global' }, async ({ jwt, request: { headers } }) => {
         const organizationDomain = headers.get('organization-domain');
         if (!organizationDomain) {
-            throw new Error('No autorizado, dominio de organización no encontrado.');
+            throw new Error('Unauthorized, organization domain not found.');
         }
         const token = headers.get('Authorization')?.split('Bearer ')[1];
         if (!token) {
-            throw new Error('No autorizado, token no encontrado.');
+            throw new Error('Not authorized, token not found.');
         }
         const tokenPayload = await jwt.verify(token);
         if (!tokenPayload) {
-            throw new Error('No autorizado, token incorrecto.');
+            throw new Error('Unauthorized, incorrect token.');
         }
         const organization = await checkOrganization(organizationDomain);
         if (!organization) {
-            throw new Error('No autorizado, organización no encontrada.');
+            throw new Error('Not authorized, organization not found.');
         }
         const member = await checkMemberToken(organization.id, token);
         if (!member) {
-            throw new Error('No autorizado, no es miembro de la organización.');
+            throw new Error('Unauthorized, not a member of the organization.');
         }
         return { logged: true, token, organizationId: organization.id, user: member.user, member };
     });
