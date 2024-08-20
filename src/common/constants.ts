@@ -2,8 +2,11 @@ export const LANGUAGES: Record<string, string> = {
     "en": "English",
     "es": "Spanish",
     "pt": "Portuguese",
-    "fr": "French",
     "ja": "Japanese",
+    "kr": "Korean",
+    "zh": "Chinese",
+    "fr": "French",
+    "ar": "Arabic",
 };
 
 export const getLanguageFromCode = (code: string) => LANGUAGES[code] ?? "English";
