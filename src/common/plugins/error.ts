@@ -22,11 +22,11 @@ export const errorHandler = () => new Elysia()
             return {
                 status: false,
                 error: code,
-                message: 'No se encontró el recurso.',
+                message: 'Resource not found.',
             };
         }
 
-        if (error?.message == 'No se pudo verificar la sesión.') {
+        if (error?.message == 'Session could not be verified.') {
             return {
                 status: false,
                 error: code,
